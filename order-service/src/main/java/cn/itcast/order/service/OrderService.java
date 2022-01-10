@@ -2,6 +2,7 @@ package cn.itcast.order.service;
 
 import cn.itcast.order.mapper.OrderMapper;
 import cn.itcast.order.pojo.Order;
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.example.clients.UserClient;
 import com.example.pojo.User;
 import org.springframework.stereotype.Service;
@@ -35,6 +36,13 @@ public class OrderService {
         // 4.返回
         return order;
     }
+
+    @SentinelResource("goods")
+    public void queryGoods() {
+        System.err.println("query goods");
+    }
+
+
 
 
 

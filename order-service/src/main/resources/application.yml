@@ -1,8 +1,8 @@
 server:
-  port: 8080
+  port: 8082
 spring:
   datasource:
-    url: jdbc:mysql://mysql:3306/cloud_order?useSSL=false
+    url: jdbc:mysql://localhost:3306/cloud_order?useSSL=false
     username: root
     password: root
     driver-class-name: com.mysql.jdbc.Driver
@@ -10,11 +10,13 @@ spring:
     name: orderservice
   cloud:
     nacos:
-      server-addr: nacos:8848
-#      discovery:
-#        cluster-name: CD # 集群名称
-#        ephemeral: false # 是否是临时实例
-#        namespace: 59a0e527-c38a-42a2-8864-fece6420bc43 # dev环境
+      server-addr: localhost:8848
+    sentinel:
+      transport:
+        dashboard: localhost:8080
+      web-context-unify: false
+
+
 mybatis:
   type-aliases-package: cn.itcast.user.pojo
   configuration:
@@ -30,14 +32,11 @@ logging:
 #    service-url:
 #      defaultZone: http://localhost:10086/eureka
 
-userservice:
-  ribbon:
-    NFLoadBalancerRuleClassName: com.alibaba.cloud.nacos.ribbon.NacosRule
-
 ribbon:
   eager-load:
     enabled: true # 开启饥饿加载
     clients: userservice # 指定饥饿加载的名称
+
 
 feign:
   httpclient:
