@@ -23,3 +23,4 @@ spring:
             - Path=/order/**
       default-filters:
         - AddRequestHeader=Truth, Javadong will be a member of Tecent cooperation.
+        - AddRequestHeader=origin, gateway
